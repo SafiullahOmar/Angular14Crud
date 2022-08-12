@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{ToastrService} from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { user } from './_helpers/interface';
+import { UsersService } from './_helpers/users.service';
 
 
 @Component({
@@ -12,7 +14,8 @@ import Swal from 'sweetalert2';
 export class AppComponent implements OnInit {
   title = 'angular14CRUD';
   registerForm:FormGroup;
-  constructor(private toaster:ToastrService,private fb:FormBuilder){
+  user:user[];
+  constructor(private toaster:ToastrService,private fb:FormBuilder,private _user:UsersService){
 
   } 
   ngOnInit(): void {
@@ -39,10 +42,15 @@ export class AppComponent implements OnInit {
   onsubmit(){
     if(this.registerForm.invalid)
     return;
-    
+
   }
   oncancel(){
     this.registerForm.reset();
   }
   
+  getAllUsers(){
+    this._user.getUsers().subscribe((res:user[])=>{
+      this.user=res;
+    });    
+  }
 }
