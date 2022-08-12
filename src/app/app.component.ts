@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import{ToastrService} from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
@@ -10,19 +11,38 @@ import Swal from 'sweetalert2';
 })
 export class AppComponent implements OnInit {
   title = 'angular14CRUD';
-  constructor(private toaster:ToastrService){
+  registerForm:FormGroup;
+  constructor(private toaster:ToastrService,private fb:FormBuilder){
 
   } 
   ngOnInit(): void {
-  this.toaster.success("sd","sd");
-  Swal.fire({
-    title: 'Error!',
-    text: 'Do you want to continue',
-    icon: 'error',
-    confirmButtonText: 'Cool'
-  });
+    this.setFromState();
+  }
+
+  setFromState(){
+    this.registerForm=this.fb.group({
+      id:[0],
+      title:['',Validators.required],
+      firstName:['',Validators.compose([Validators.required,Validators.minLength(3),Validators.maxLength(10)])],
+      lastName:['',Validators.compose([Validators.required,Validators.minLength(3),Validators.maxLength(10)])],
+      email:['',Validators.compose([Validators.required,Validators.email])],
+      dob:['',Validators.compose([Validators.required])],
+      password:['',Validators.compose([Validators.required])],
+      confirmPassword:['',Validators.required],
+      accept:[false,Validators.required]
+
+    });
+
+       
   }
   
-
+  onsubmit(){
+    if(this.registerForm.invalid)
+    return;
+    
+  }
+  oncancel(){
+    this.registerForm.reset();
+  }
   
 }

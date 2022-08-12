@@ -1,1 +1,66 @@
-<button  class="btn btn-primary" >Save</button>
+<div class="card">
+    <div class="card-header">User Registration</div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="">Title</label>
+                    <select class="form-control" formControlName="title">
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                    </select>
+                </div>
+
+                <div class="form-group co-5">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" formControlName="firstName">
+                </div>
+                <div class="form-group co-5">
+                    <label for="">last Name</label>
+                    <input type="text" class="form-control" formControlName="lastName">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label>DOB</label>
+                    <input type="date" class="form-control" formControlName="dob" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Email</label>
+                    <input type="text" class="form-control" formControlName="email" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label>passwrod</label>
+                    <input type="password" class="form-control" formControlName="password" />
+                </div>
+                <div class="form-group col-5">
+                    <label>Confirm Password</label>
+                    <input type="text" class="form-control" formControlName="confirmPassword" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group form-check col">
+                    <input type="checkbox" class="form-control form-check-input" id="acceptTerms"
+                        formControlName="accept">
+                    <label for="acceptTerms" class="form-check-label">Accept Terms</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-danger" (click)="oncancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header cardheaderlist">User Registration List</div>
+    <div class="card-body"></div>
+</div>
